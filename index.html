@@ -156,9 +156,9 @@ background-size: cover;
  <!-- ÜST MENÜ -->
  <nav>
  <div>
- <a href="#pizzalar"> Pizzalar</a>
- <a href="#tatlilar"> Tatlılar</a>
- <a href="#icecekler"> İçecekler</a>
+ <a id="nav-pizza" href="#pizzalar"> Pizzalar</a>
+ <a id="nav-dessert" href="#tatlilar"> Tatlılar</a>
+ <a id="nav-drink" href="#icecekler"> İçecekler</a>
  </div>
  <button class="lang-switch" onclick="switchLang()">EN</button>
  </nav>
@@ -310,6 +310,14 @@ background-size: cover;
  if (currentLang === "tr") {
  currentLang = "en";
  button.innerText = "TR";
+
+  // NAV MENÜ
+document.getElementById("nav-pizza").innerText = "Pizzas";
+document.getElementById("nav-dessert").innerText = "Desserts";
+document.getElementById("nav-drink").innerText = "Drinks";
+
+
+// BAŞLIKLAR
  document.getElementById("title").innerText = "Lezzet Durağı Pizza  ";
  document.getElementById("pizza-title").innerText = "Pizzas";
  document.getElementById("meat-title").innerText = "Meat Pizzas";
@@ -320,6 +328,7 @@ background-size: cover;
  document.getElementById("cold-title").innerText = "Cold Drinks";
  document.getElementById("hot-title").innerText = "Hot Drinks";
 
+// MENÜLER
  document.getElementById("pepperoni-name").innerText = "Pepperoni Pizza";
  document.getElementById("pepperoni-price").innerText = "€7.5";
  document.getElementById("sucuklu-name").innerText = "Mixed Pizza";
@@ -348,7 +357,9 @@ background-size: cover;
  document.getElementById("coffee-price").innerText = "€1.8";
  document.getElementById("tea-name").innerText = "Tea";
  document.getElementById("tea-price").innerText = "€1";
- } else {
+ } 
+ 
+ else {
  location.reload(); // Türkçe'ye dön
  }
  }
