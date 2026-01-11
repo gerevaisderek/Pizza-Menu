@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Pizza Menu</title>
+ <style>
+
+ html {
+ scroll-behavior: smooth; 
+ }/*basınca hafif kaydırma komutu*/
+ 
+ body {
+ font-family: 'Segoe UI', sans-serif;
+ margin: 0;
+ background-color: #f9f9f9;
+ color: #333; /*özel bir renk atamaz isen menüdeki tüm yazılar bu renkten olacak demek*/
+ }
+
+ /* ----- ÜST MENÜ ----- */
+ nav {
+position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ background-color: rgba(255, 255, 255, 0.9);
+ box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ display: flex;
+ justify-content: space-between; 
+ align-items: center;
+ padding: 10px 20px;
+ z-index: 100; 
+ backdrop-filter: blur(10px);
+ box-sizing: border-box; /* Taşmayı önler */
+ flex-wrap: nowrap; /* Alt satıra inmeyi engeller */
+ }
+
+ nav a {
+ text-decoration: none;
+ color: #d33;
+ font-size: 16px; 
+ font-weight: bold ;
+ margin: 0 10px;
+ white-space: nowrap; /* Yazıyı tek satırda tutar */
+ transition: color 0.3s;
+ }
+
+ nav a:hover {
+ color: #d33;/*fare üstüne gelince olan renk değişikliği bu örnekte aynı tutulmuş */
+ }
+
+ .lang-switch { /*buttonın class'ı */
+ background-color: #d33;
+ color: white;
+ border: none;
+ padding: 8px 14px;
+ font-size: 14px;
+ border-radius: 8px;
+ cursor: pointer;
+ flex-shrink: 0; /* Butonun daralmasını engeller */
+ }
+
+ /* ----- BANNER ----- */
+ header {
+ background-image: url('Pizzacı2.avif'); /* BURAYA BANNER RESMİNİ YÜKLE */
+background-size: cover;
+ background-position: center;
+ text-align: center;
+ color: white;
+ padding: 120px 20px 80px 20px;
+ margin-top: 60px;  /* Nav'ın altına gelecek şekilde boşluk */
+ margin-left: 30px;
+ margin-right: 30px;
+ }
+
+ header h1 {
+ font-size: 42px;
+ text-shadow: 2px 2px 6px rgba(0,0,0,0.5);/* Arka plan resminin üzerinde yazının daha bilirgin olmasını sağlar */
+}
+ 
+
+
+ /* ----- BÖLÜMLER ----- */
+ section {
+ padding: 20px 20px;
+ max-width: 1000px; /* büyük ekranlarda içeriğin aşırı yayılmasını önler */
+ margin:auto; /* max-width ile kullanıldığında bölümü sayfanın ortasına hizalar */
+ }
+
+ h2 {
+ font-size: 32px;
+ margin-bottom: 10px;
+ border-bottom: 2px solid #ddd;/* Section isimlarinin altındaki çizgiyi çekiyor */
+ padding-bottom: 5px;/* başlık ile çizgi arasındaki boşluğu burası ayarlıyor */
+ }
+
+ h3 {
+ font-size: 26px;
+ margin-top: 30px;
+ color: #d33;
+ }
+
+ .menu-item {
+ display: flex; /*flexbox*/
+ align-items: center; /* yukarıdan aşağı ortalıyor*/
+ margin: 20px 0;
+ background-color: white;
+ padding: 15px;
+ border-radius: 10px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ }
+
+ .menu-item img {
+ width: 120px;
+ height: 120px;
+ border-radius: 10px;
+ object-fit: cover;/*resmin en boy oranını koruyorak tamamen kaplayacak şekilde kırpılmasını sağlar*/
+ margin-right: 20px; /*resmim ile yanındaki metin arasına boşluk bırakır*/
+ }
+
+ .menu-item div {
+ flex: 1; /*flexbox'ın tüm alanını kapsasın diye 1 seçilmiş*/
+ }
+
+ .menu-item h4 {
+ font-size: 22px;
+ margin: 0;/*tüm dış boşlukları kaldırır*/
+ }
+
+ .price {
+ font-size: 20px;
+ color: #666;
+ margin-top: 5px;
+ }
+
+ @media (max-width: 600px) {
+ nav {
+ flex-direction: row; /* Sütun yerine satırda tutar */
+  padding: 10px;
+ }
+
+ nav a {
+ font-size: 18px; /* Sığması için font küçültüldü */
+  margin: 0 5px;
+ }
+
+ .menu-item {
+flex-direction: column;
+  text-align: center;
+ }
+ .menu-item img {
+ margin-bottom: 10px;
+ }
+ }
+ </style>
+</head>
+<body>
+
+ <!-- ÜST MENÜ -->
+ <nav>
+ <div>
+ <a id="nav-pizza" href="#pizzalar"> Pizzalar</a>
+ <a id="nav-dessert" href="#tatlilar"> Tatlılar</a>
+ <a id="nav-drink" href="#icecekler"> İçecekler</a>
+ </div>
+ <button class="lang-switch" onclick="switchLang()">EN</button>
+ </nav>
+
+ <!-- BANNER -->
+ <header>
+ <h1 id="title"> Lezzet Durağı Pizza</h1>
+ </header>
+
+ <!-- PİZZALAR -->
+ <section id="pizzalar">
+ <h2 id="pizza-title">Pizzalar</h2>
+
+ <h3 id="meat-title">Etli Pizzalar</h3>
+
+ <div class="menu-item">
+ <img src="Pepperoni.avif" alt="Pepperoni Pizza"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="pepperoni-name">Pepperoni Pizza</h4>
+ <p class="price" id="pepperoni-price">₺180</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <img src="KarısıkPizza.avif" alt="Karisik Pizza"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="sucuklu-name">Karışık Pizza</h4>
+ <p class="price" id="sucuklu-price">₺190</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+    <img src="PastırmalıPizza.avif" alt="Karisik Pizza"> <!-- RESİM EKLE -->
+    <div>
+    <h4 id="turk-name">Türk Ateşi Pizza</h4>
+    <p class="price" id="turk-price">₺190</p>
+    </div>
+    </div>
+
+ <h3 id="veg-title">Etsiz Pizzalar</h3>
+
+ <div class="menu-item">
+ <img src="Margarita Pizza.avif" alt="Sebzeli Pizza"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="margarita-name">Margarita Pizza</h4>
+ <p class="price" id="margarita-price">₺160</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+    <img src="akdeniz-pizza.avif" alt="Akdeniz Pizza"> <!-- RESİM EKLE -->
+    <div>
+    <h4 id="akdeniz-name">Akdeniz Pizza</h4>
+    <p class="price" id="akdeniz-price">₺160</p>
+    </div>
+    </div>
+
+<div class="menu-item">
+        <img src="Mantarli-Pizza.avif" alt="Mantarlı Pizza"> <!-- RESİM EKLE -->
+        <div>
+        <h4 id="mantarlı-name">Mantarlı Pizza</h4>
+        <p class="price" id="mantarlı-price">₺160</p>
+        </div>
+        </div>
+
+<div class="menu-item">
+            <img src="eggplant-pizza.avif" alt="Ege Pizza"> <!-- RESİM EKLE -->
+            <div>
+            <h4 id="ege-name">Kalbim Ege'de Kaldı</h4>
+            <p class="price" id="ege-price">₺160</p>
+            </div>
+            </div>
+ 
+
+ <h3 id="chef-title">Şefin Önerileri</h3>
+ <div class="menu-item">
+ <img src="ChefPizza.avif" alt="Şefin Pizzası"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="chef-name">Şefin Pizzası</h4>
+ <p class="price" id="chef-price">₺220</p>
+ </div>
+ </div>
+ </section>
+
+ <!-- TATLILAR -->
+ <section id="tatlilar">
+ <h2 id="dessert-title">Tatlılar</h2>
+ <div class="menu-item">
+ <img src="Tiramisu.avif" alt="Tiramisu"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="tiramisu-name">Tiramisu</h4>
+ <p class="price" id="tiramisu-price">₺90</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <img src="sufle.avif" alt="Sufle"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="suffle-name">Sufle</h4>
+ <p class="price" id="suffle-price">₺85</p>
+ </div>
+ </div>
+ </section>
+
+ <!-- İÇECEKLER -->
+ <section id="icecekler">
+ <h2 id="drink-title">İçecekler</h2>
+
+ <h3 id="cold-title">Soğuk İçecekler</h3>
+ <div class="menu-item">
+ <img src="Kola.avif" alt="Kola"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="cola-name">Kola</h4>
+ <p class="price" id="cola-price">₺40</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <img src="ayran.avif" alt="Ayran"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="ayran-name">Ayran</h4>
+ <p class="price" id="ayran-price">₺30</p>
+ </div>
+ </div>
+
+ <h3 id="hot-title">Sıcak İçecekler</h3>
+ <div class="menu-item">
+ <img src="turkkahvesi.avif" alt="Türk Kahvesi"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="coffee-name">Türk Kahvesi</h4>
+ <p class="price" id="coffee-price">₺50</p>
+ </div>
+ </div>
+
+ <div class="menu-item">
+ <img src="cay.avif" alt="Çay"> <!-- RESİM EKLE -->
+ <div>
+ <h4 id="tea-name">Çay</h4>
+ <p class="price" id="tea-price">₺25</p>
+ </div>
+ </div>
+ </section>
+
+ <script>
+ let currentLang = "tr";
+
+ function switchLang() {
+ const button = document.querySelector(".lang-switch");
+ if (currentLang === "tr") {
+ currentLang = "en";
+ button.innerText = "TR";
+
+  // NAV MENÜ
+document.getElementById("nav-pizza").innerText = "Pizzas";
+document.getElementById("nav-dessert").innerText = "Desserts";
+document.getElementById("nav-drink").innerText = "Drinks";
+
+
+// BAŞLIKLAR
+ document.getElementById("title").innerText = "Lezzet Durağı Pizza  ";
+ document.getElementById("pizza-title").innerText = "Pizzas";
+ document.getElementById("meat-title").innerText = "Meat Pizzas";
+ document.getElementById("veg-title").innerText = "Vegetarian Pizzas";
+ document.getElementById("chef-title").innerText = "Chef’s Specials";
+ document.getElementById("dessert-title").innerText = "Desserts";
+ document.getElementById("drink-title").innerText = "Drinks";
+ document.getElementById("cold-title").innerText = "Cold Drinks";
+ document.getElementById("hot-title").innerText = "Hot Drinks";
+
+// MENÜLER
+ document.getElementById("pepperoni-name").innerText = "Pepperoni Pizza";
+ document.getElementById("pepperoni-price").innerText = "€7.5";
+ document.getElementById("sucuklu-name").innerText = "Mixed Pizza";
+ document.getElementById("sucuklu-price").innerText = "€8";
+ document.getElementById("turk-name").innerText = "Turkish Fire Pizza";
+ document.getElementById("turk-price").innerText = "€8";
+ document.getElementById("margarita-name").innerText = "Margarita Pizza";
+ document.getElementById("margarita-price").innerText = "€6.5";
+ document.getElementById("akdeniz-name").innerText = "Mediterranean Pizza";
+ document.getElementById("akdeniz-price").innerText = "€6.5";
+ document.getElementById("mantarlı-name").innerText = "Funghi Pizza";
+ document.getElementById("mantarlı-price").innerText = "€6.5";
+ document.getElementById("ege-name").innerText = "Aegean Pizza";
+ document.getElementById("ege-price").innerText = "€6.5";
+ document.getElementById("chef-name").innerText = "Chef’s Pizza";
+ document.getElementById("chef-price").innerText = "€9.5";
+ document.getElementById("tiramisu-name").innerText = "Tiramisu";
+ document.getElementById("tiramisu-price").innerText = "€3.5";
+ document.getElementById("suffle-name").innerText = "Chocolate Soufflé";
+ document.getElementById("suffle-price").innerText = "€3";
+ document.getElementById("cola-name").innerText = "Cola";
+ document.getElementById("cola-price").innerText = "€1.5";
+ document.getElementById("ayran-name").innerText = "Ayran (Yogurt Drink)";
+ document.getElementById("ayran-price").innerText = "€1";
+ document.getElementById("coffee-name").innerText = "Turkish Coffee";
+ document.getElementById("coffee-price").innerText = "€1.8";
+ document.getElementById("tea-name").innerText = "Tea";
+ document.getElementById("tea-price").innerText = "€1";
+ } 
+ 
+ else {
+ location.reload(); // Türkçe'ye dön
+ }
+ }
+ </script>
+
+</body>
+</html>
